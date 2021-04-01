@@ -2,11 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="android.componentization.module_login">
 
-    <application>
+    <application
+        android:theme="@style/MyAppTheme">
+        <activity android:name="com.componentization.module_login.ui.login.ModuleLoginActivity"></activity>
         <activity
             android:name="com.componentization.module_login.ui.login.LoginActivity"
             android:label="@string/title_activity_login"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

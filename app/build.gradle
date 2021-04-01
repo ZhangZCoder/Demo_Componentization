@@ -1,25 +1,22 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
-        applicationId "android.componentization.demo"
-        minSdkVersion 19
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        javaCompileOptions {
-
-            annotationProcessorOptions {
-
-                arguments = [AROUTER_MODULE_NAME:project.getName()]
-
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
             }
-
         }
     }
 
@@ -34,11 +31,14 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    if (useModule){
-        implementation project(':module_login')
-    }
+    kapt rootProject.ext.otherDeps["arouter-compiler"]
     implementation project(':base')
-    annotationProcessor rootProject.ext.otherDeps["arouter-compiler"]
+
+    if (!useModule.toBoolean()){
+        implementation project(':module_login')
+        implementation project(":module_main")
+        implementation project(":module_mine")
+    }
+
 
 }

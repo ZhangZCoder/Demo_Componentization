@@ -1,0 +1,9 @@
+apply from: "../module.build.gradle"
+android {
+    defaultConfig{
+        if (useModule.toBoolean()){
+            applicationId = "com.zz.module.main"
+        }
+    }
+}
+

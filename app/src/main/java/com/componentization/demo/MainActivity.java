@@ -16,18 +16,28 @@ public class MainActivity extends BaseActivity {
 
     @Bind({R.id.btGoto})
     Button btGoto;
+    @Bind({R.id.btGotoJava})
+    Button btGotoJava;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.app_activity_main);
         ButterKnife.bind(this);
         btGoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ARouter.getInstance().build("/login/loginmodule")
+                        .navigation();
+            }
+        });
+
+        btGotoJava.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 //                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
 //                startActivity(intent);
-                ARouter.getInstance().build("/login/login")
+                ARouter.getInstance().build("/app/main")
                         .navigation();
             }
         });

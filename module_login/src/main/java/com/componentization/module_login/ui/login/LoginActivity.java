@@ -5,6 +5,7 @@ import android.app.Activity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.componentization.base.BaseActivity;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -25,11 +26,12 @@ import android.widget.Toast;
 import android.componentization.module_login.R;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 
 import butterknife.ButterKnife;
 
 @Route(path = "/login/login")
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
 
     private LoginViewModel loginViewModel;
 
@@ -119,6 +121,9 @@ public class LoginActivity extends AppCompatActivity {
                 loadingProgressBar.setVisibility(View.VISIBLE);
                 loginViewModel.login(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString());
+                ARouter.getInstance().build("/main/home")
+                        .navigation();
+                finish();
             }
         });
     }
