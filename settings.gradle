@@ -1,3 +1,5 @@
+include ':lib_compiler'
+include ':lib_annotations'
 include ':module_mine'
 include ':module_main'
 rootProject.name='My Application'

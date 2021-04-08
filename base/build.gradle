@@ -34,6 +34,9 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    api project(':lib_annotations')
+    annotationProcessor project(':lib_compiler')
+
     // support库
     api rootProject.ext.supportLibs
     // commonLibs

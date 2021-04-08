@@ -2,28 +2,35 @@ package com.componentization.demo;
 
 
 import android.componentization.base.BaseActivity;
+import android.componentization.base.MyButterKnife;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
+import com.zz.annotations.MyBindView;
 
 
 public class MainActivity extends BaseActivity {
 
-    @Bind({R.id.btGoto})
+//    @Bind({R.id.btGoto})
+//    Button btGoto;
+//    @Bind({R.id.btGotoJava})
+//    Button btGotoJava;
+
+    @MyBindView(R.id.btGoto)
     Button btGoto;
-    @Bind({R.id.btGotoJava})
+    @MyBindView(R.id.btGotoJava)
     Button btGotoJava;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.app_activity_main);
-        ButterKnife.bind(this);
+//        ButterKnife.bind(this);
+        MyButterKnife.bind(this);
         btGoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

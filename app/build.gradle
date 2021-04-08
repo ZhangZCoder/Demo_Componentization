@@ -40,5 +40,6 @@ dependencies {
         implementation project(":module_mine")
     }
 
+    kapt project(':lib_compiler')
 
 }
